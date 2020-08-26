@@ -121,5 +121,86 @@ def scheduleCompatibleTasks(T, n=None):
 
     return S
 
+# Saída com as tarefas compatíveis
+# print(scheduleCompatibleTasks(Tasks))
 
-print(scheduleCompatibleTasks(Tasks))
+
+# Problema da mochila fracinária, algoritmo 19.2
+# define a classe item da mochila, com valor, peso e razão valor/peso
+
+
+class Item:
+    def __init__(self, value, weight):
+        self.value = value
+        self.weight = weight
+        self.rationVW = value/weight
+
+    def __repr__(self):
+        return str(self.value)+"-"+str(self.weight)
+
+# usa o bubble sort para ordenar pelo razão do valor/peso
+
+
+def sortItmesByRation(I):
+    n = len(I)
+    for j in range(n - 1):
+        for i in range(n - 1):
+            # ordena pela razão valor/peso
+            if I[i].rationVW < I[i + 1].rationVW:
+                aux = I[i]
+                I[i] = I[i+1]
+                I[i + 1] = aux
+    return I
+
+
+# define uma lista de itens com seus respectivos valores e pesos
+items = [Item(60, 10), Item(100, 20), Item(120, 30)]
+# capacidade de peso total da mochima
+W = 50
+
+# define a função que argupa os itens na mochila
+
+
+def fractionalKnapsackProblem(I, W, n=None):
+    # ordena os itens pela razão valor/peso
+    I = sortItmesByRation(I)
+    # inicializa o i
+    i = 0
+    # pega o tamanho da lista de itens
+    n = len(I)
+    # define um array de quantidade de itens da mochila
+    f = [0, 0, 0]
+    # pega a capacidade da mochila
+    capacit = W
+
+    # percorre a lista ordenada pelo peso e coloca os itens inteiros na mochina
+    # enquanto ainda há capacidade
+    while i < n and capacit >= I[i].weight:
+        # caso haja capacidade, insere um item inteiro na mochila
+        f[i] = 1
+        # reduz a capacidade da mochila de acordo com o peso colocado
+        capacit = capacit - I[i].weight
+        # caminha na lista de itens
+        i = i + 1
+
+    # quando não há mais capacidade na mochila
+    # pega a posição atual e adiciona no vetoro de quantidades f
+    # o valor do peso que a mochila ainda comporta, que neste caso a mochila
+    # não comporta mais um intem inteiro, apenas uma fração dele
+    if i < n:
+        f[i] = capacit/I[i].weight
+
+    # a partir dauqui a mochila não comporta mais itens
+    # então o vetor de quantidades é preenchido com 0 (zeros)
+    # para informar que nenhum item mais entrou na mochila
+    j = i + 1
+    for j in range(j, n):
+        f[j] = 0
+
+    # retorna a lista que informar quanto de cada item foi adicionado a mochila
+    return f
+
+
+# imprime o vetor f
+#print(fractionalKnapsackProblem(items, W))
+#saída [1, 1, 0.6666666666666666]
