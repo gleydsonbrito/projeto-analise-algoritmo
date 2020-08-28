@@ -13,7 +13,6 @@ class Node:
         return str(self.key)+"="+str(self.frequency)
 
     def Print_Tree(self):
-
         if self.left is not None:
             self.left.Print_Tree()
             print("0")
@@ -92,9 +91,5 @@ def createTree(LIST):
 
 
 frequencyList = createTree(frequencyList)
-
-for i in range(0, len(frequencyList)):
-    print(frequencyList[i])
-
 
 frequencyList[0].Print_Tree()
