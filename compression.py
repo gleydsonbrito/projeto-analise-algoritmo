@@ -60,7 +60,7 @@ def exist(KEY, LIST):
 countFequency(listOfNodeCharacters)
 
 
-def sortListByFrequency(LIST):
+def sortListByFrequencyPriority(LIST):
     n = len(LIST)
     for j in range(0, n-1):
         for i in range(0, n-1):
@@ -71,7 +71,7 @@ def sortListByFrequency(LIST):
     return LIST
 
 
-frequencyList = sortListByFrequency(frequencyList)
+frequencyList = sortListByFrequencyPriority(frequencyList)
 print("Lista de frequência: ", frequencyList)
 
 
@@ -86,7 +86,7 @@ def createTree(LIST):
                  childRight.frequency, childLeft, childRight)
 
         LIST.append(P)
-        LIST = sortListByFrequency(LIST)
+        LIST = sortListByFrequencyPriority(LIST)
     return LIST
 
 
