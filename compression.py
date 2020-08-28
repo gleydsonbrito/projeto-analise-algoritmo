@@ -1,4 +1,5 @@
-TEXT_TO_ENCODE = "abacaxi"
+TEXT_TO_ENCODE = "ABRACADABRA"
+print("Texto para codificar: ", TEXT_TO_ENCODE)
 
 
 class Node:
@@ -9,16 +10,16 @@ class Node:
         self.right = right
 
     def __repr__(self):
-        return str(self.key)+","+str(self.frequency)+"-L:>"+str(self.left)+"-R:>"+str(self.right)
+        return str(self.key)+"="+str(self.frequency)
 
     def Print_Tree(self):
+
         if self.left is not None:
             self.left.Print_Tree()
             print("0")
         print(self.key, end=' - ')
         if self.right is not None:
             self.right.Print_Tree()
-            print("1")
 
 
 listOfNodeCharacters = []
@@ -28,10 +29,11 @@ def createListOfNodes(TEXT):
     for char in TEXT:
         node = Node(char, 1)
         listOfNodeCharacters.append(node)
-        # print(node)
 
 
 createListOfNodes(TEXT_TO_ENCODE)
+
+print("Lista de caracteres: ", listOfNodeCharacters)
 
 frequencyList = []
 
@@ -71,6 +73,7 @@ def sortListByFrequency(LIST):
 
 
 frequencyList = sortListByFrequency(frequencyList)
+print("Lista de frequência: ", frequencyList)
 
 
 def createTree(LIST):
@@ -80,7 +83,7 @@ def createTree(LIST):
 
         LIST = LIST[:-2]
 
-        P = Node("1", childLeft.frequency +
+        P = Node(1, childLeft.frequency +
                  childRight.frequency, childLeft, childRight)
 
         LIST.append(P)
@@ -92,5 +95,6 @@ frequencyList = createTree(frequencyList)
 
 for i in range(0, len(frequencyList)):
     print(frequencyList[i])
+
 
 frequencyList[0].Print_Tree()
