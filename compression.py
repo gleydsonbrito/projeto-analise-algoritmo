@@ -1,4 +1,4 @@
-TEXT_TO_ENCODE = "ABRACADABRA"
+TEXT_TO_ENCODE = "ABBACADCA"
 print("Texto para codificar: ", TEXT_TO_ENCODE)
 
 
