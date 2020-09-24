@@ -1,32 +1,48 @@
+# Classe que define o grafo
+# constituido de uma lista de vértices e uma lista de arestas
+# o vertice é representado por um número inteiro
+# a aresta por um arrau de 2 posições [a, b] com A e B inteiros
+
 class Grafo:
     def __init__(self,):
         self.vertices = []
-        self.adjacencias = []
+        self.arestas = []
+    # imprime o grafo
 
     def imprimirGrafo(self, ):
-        print('Vertices: ')
+        # pecorre a lista de vétices impriminso um a um
         for v in self.vertices:
             print(v, end='-> ')
-        print('Fim')
-        print('Lista de adjacencias:')
-        for a in self.adjacencias:
+        print('*')
+        # percorre a lista de arestas imprimindo um a um
+        for a in self.arestas:
             print('('+str(a), end=') ')
-        print('Fim')
+        print('*')
 
-    def addVertice(self, v):
+    def addVertice(self, v):  # adiciona vértice ao grafo
         self.vertices.append(v)
 
-    def addAdjacencias(self, a):
-        self.adjacencias.append(a)
+    def addArestas(self, a):  # adiciona uma aresta ao grafo
+        self.arestas.append(a)
 
+    # calcula o grau do vértice
+    # recebe a opão 'max' ou 'min' como parâmetro de entrada
     def grau(self, opcao):
+        # lista de graus de todos os vértices
+        # o valor de grau[0..1..n] contém o grau desse vértice, etc...
         graus = []
+        # percorre a lista de vértices
         for v in self.vertices:
-            m = 0
-            for i in range(len(self.adjacencias)):
-                if v == self.adjacencias[i][0]:
-                    m = m + 1
-            graus.append(m)
+            # acumulador do grau do vértice em questão
+            grauDeV = 0
+            # percorre a lista de arestas
+            for i in range(len(self.arestas)):
+                # se o vértice v for igual a aresta[0] acumula um em grauDeV
+                if v == self.arestas[i][0]:
+                    grauDeV = grauDeV + 1
+            # insere o grau na lista de graus
+            graus.append(grauDeV)
+        # avalia o parâmetro de entrada, max retorna o máximo, e vice versa...
         if opcao == 'max':
             return print("Grau máximo: ", max(graus))
         elif opcao == 'min':
@@ -35,7 +51,9 @@ class Grafo:
             return print('Opção Inválida.')
 
 
+# cria uma instância vazia do grafo
 grafo = Grafo()
+# adiciona vértices (números inteiros)
 grafo.addVertice(1)
 grafo.addVertice(2)
 grafo.addVertice(3)
@@ -43,22 +61,24 @@ grafo.addVertice(4)
 grafo.addVertice(5)
 grafo.addVertice(6)
 
-grafo.addAdjacencias([1, 2])
-grafo.addAdjacencias([1, 5])
-grafo.addAdjacencias([1, 3])
-grafo.addAdjacencias([2, 3])
-grafo.addAdjacencias([2, 5])
-grafo.addAdjacencias([3, 4])
-grafo.addAdjacencias([3, 5])
-grafo.addAdjacencias([3, 1])
-grafo.addAdjacencias([4, 5])
-grafo.addAdjacencias([4, 6])
-grafo.addAdjacencias([5, 3])
-grafo.addAdjacencias([5, 3])
-grafo.addAdjacencias([5, 1])
-grafo.addAdjacencias([6, 4])
+# adiciona as arestas um array de 2 números inteiros, atesta [a, b]...
+grafo.addArestas([1, 2])
+grafo.addArestas([1, 5])
+grafo.addArestas([1, 3])
+grafo.addArestas([2, 3])
+grafo.addArestas([2, 5])
+grafo.addArestas([3, 4])
+grafo.addArestas([3, 5])
+grafo.addArestas([3, 1])
+grafo.addArestas([4, 5])
+grafo.addArestas([4, 6])
+grafo.addArestas([5, 3])
+grafo.addArestas([5, 3])
+grafo.addArestas([5, 1])
+grafo.addArestas([6, 4])
 
-
+# imprime o grafo
 grafo.imprimirGrafo()
+# imprime os graus
 grafo.grau('max')
 grafo.grau('min')
