@@ -19,28 +19,20 @@ class Grafo:
     def addAdjacencias(self, a):
         self.adjacencias.append(a)
 
-    def graMaximo(self,):
-        max = 0
+    def grau(self, opcao):
         graus = []
-        for a in self.adjacencias:
-            contador = 0
-            aresta = a[0]
-            while a[0] == aresta:
-                contador += 1
-            graus.append(contador)
-
-        for m in graus:
-            if max < m:
-                max = m
-
-        return print("Grau máximo: ", max)
-
-    def grauMinimo(self,):
-        min = 99999999
-        for a in self.adjacencias:
-            if min > len(a):
-                min = len(a)
-        return print("Grau Mínimo: ", min)
+        for v in self.vertices:
+            m = 0
+            for i in range(len(self.adjacencias)):
+                if v == self.adjacencias[i][0]:
+                    m = m + 1
+            graus.append(m)
+        if opcao == 'max':
+            return print("Grau máximo: ", max(graus))
+        elif opcao == 'min':
+            return print('Grau mínimo: ', min(graus))
+        else:
+            return print('Opção Inválida.')
 
 
 grafo = Grafo()
@@ -68,5 +60,5 @@ grafo.addAdjacencias([6, 4])
 
 
 grafo.imprimirGrafo()
-grafo.graMaximo()
-grafo.grauMinimo()
+grafo.grau('max')
+grafo.grau('min')
