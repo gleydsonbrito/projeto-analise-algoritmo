@@ -66,3 +66,16 @@ grafo = [
     {'cidade': 'e', 'adjacencias': [{'cidade': 'a', 'dist': 223}, {'cidade': 'b', 'dist': 987}, {
         'cidade': 'c', 'dist': 876}, {'cidade': 'd', 'dist': 3456}]},
 ]
+
+
+class Arvore:
+    def __init__(self, vertice, visitado, predecessor):
+        self.vertice = vertice
+        self.visitado = visitado
+        self.predecessor = predecessor
+
+
+arvoreDeVertices = []
+
+for vertice in grafo:
+    arvoreDeVertices.append(Arvore(vertice, 0, None))
