@@ -1,7 +1,15 @@
-# Classe que define o grafo
+from collections import deque
+
+
+class Vertex:
+    def __init__(self, n, visitado=False):
+        self.n = n
+        self.visitado
+# classe que define o grafo
 # constituido de uma lista de vértices e uma lista de arestas
 # o vertice é representado por um número inteiro
 # a aresta por um arrau de 2 posições [a, b] com A e B inteiros
+
 
 class Grafo:
     def __init__(self,):
@@ -10,7 +18,7 @@ class Grafo:
     # imprime o grafo
 
     def imprimirGrafo(self, ):
-        # pecorre a lista de vétices impriminso um a um
+        # pecorre a lista de vétices imprimindo um a um
         for v in self.vertices:
             print(v, end='-> ')
         print('*')
@@ -50,17 +58,30 @@ class Grafo:
         else:
             return print('Opção Inválida.')
 
+    def exlcuirVertice(self, vert):
+        index = -1
+        for i in range(len(self.vertices)):
+            if self.vertices[i] == vert:
+                index = i
+        del self.vertices[index]
+
+    def BuscaEmLargura(self, s, G=None):
+        s.visitado = True
+        F = deque()
+        F.append(s)
+        while len(F) > 0:
+            u = F.popleft()
+
 
 # cria uma instância vazia do grafo
 grafo = Grafo()
 # adiciona vértices (números inteiros)
-grafo.addVertice(1)
-grafo.addVertice(2)
-grafo.addVertice(3)
-grafo.addVertice(4)
-grafo.addVertice(5)
-grafo.addVertice(6)
-
+grafo.addVertice(Vertex(1))
+grafo.addVertice(Vertex(2))
+grafo.addVertice(Vertex(3))
+grafo.addVertice(Vertex(4))
+grafo.addVertice(Vertex(5))
+grafo.addVertice(Vertex(6))
 # adiciona as arestas um array de 2 números inteiros, atesta [a, b]...
 grafo.addArestas([1, 2])
 grafo.addArestas([1, 5])
@@ -82,3 +103,7 @@ grafo.imprimirGrafo()
 # imprime os graus
 grafo.grau('max')
 grafo.grau('min')
+
+grafo.exlcuirVertice(2)
+
+grafo.imprimirGrafo()
