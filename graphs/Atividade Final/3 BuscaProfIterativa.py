@@ -6,7 +6,7 @@ G = {'A': set(['B', 'C']),
      'F': set(['C', 'E'])}
 
 
-def dfs(G, s):
+def BuscaProfIterativa(G, s):
     print('Inicia pelo vertice {}'.format(s))
     visitado = set()
     print('Empilha {}'.format(s))
@@ -22,4 +22,4 @@ def dfs(G, s):
     return visitado
 
 
-print('Resultado: ', dfs(G, 'A'))
+print('Resultado: ', BuscaProfIterativa(G, 'A'))
