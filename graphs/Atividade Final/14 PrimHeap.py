@@ -33,7 +33,7 @@ def criarArvoreGeradora(G, s):
             print('Liga {} com {}'.format(u, v))
             for proximo, d in G[v].items():
                 if proximo not in visitados:
-                    print('Proximo a ser visitado {}'.format(proximo))
+                    print('Verifica distancia para {}'.format(proximo))
                     heapq.heappush(arestas, (d, v, proximo))
 
     return arvoreGeradoraMinima
