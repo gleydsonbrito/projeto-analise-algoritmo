@@ -74,5 +74,5 @@ dig.adicionaArco(3, 2)
 dig.adicionaArco(3, 1)
 dig.adicionaArco(2, 4)
 
-print('Trilha')
+print('Trilha Euleriana: ')
 dig.imprimir()
