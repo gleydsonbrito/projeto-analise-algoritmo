@@ -1,7 +1,7 @@
 INF = float('inf')
 
 
-def FloydMarshallTpoDowb():
+def MockFloydMarshallTpoDowb():
     return [[1, 3, INF, 5],
             [2, 2, INF, 4],
             [INF, 0, 3, INF],
@@ -9,7 +9,7 @@ def FloydMarshallTpoDowb():
 
 
 def Resolve_Caminhos_Entre_Pares(D=None, w=None):
-    W = FloydMarshallTpoDowb()
+    W = MockFloydMarshallTpoDowb()
     for i in range(4):
         if W[i][i] < 0:
             return NotImplemented
