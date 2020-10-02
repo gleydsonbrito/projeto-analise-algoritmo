@@ -1,6 +1,6 @@
-nV = 4
+nivel = 4
 
-INF = 99999
+INF = float('inf')
 
 # implementação do algoritmo
 
@@ -9,9 +9,9 @@ def floyd_warshall(G):
     distance = list(map(lambda i: list(map(lambda j: j, i)), G))
 
     # adicionando vertices individualmente
-    for k in range(nV):
-        for i in range(nV):
-            for j in range(nV):
+    for k in range(nivel):
+        for i in range(nivel):
+            for j in range(nivel):
                 distance[i][j] = min(
                     distance[i][j], distance[i][k] + distance[k][j])
                 print('Pega o menor entre {} e {}'.format(
@@ -21,8 +21,8 @@ def floyd_warshall(G):
 
 
 def imprimir(distance):
-    for i in range(nV):
-        for j in range(nV):
+    for i in range(nivel):
+        for j in range(nivel):
             if(distance[i][j] == INF):
                 print("INF", end=" ")
             else:
