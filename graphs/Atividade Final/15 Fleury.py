@@ -21,7 +21,7 @@ class Digrafo:
             if k == u:
                 self.digrafo[v].pop(indice)
 
-    # fuinção que conta os vertices alcançáveis de v
+    # função que conta os vertices alcançáveis de v
     def contaVerticesAlcancaveis(self, v, visitado):
         count = 1
         visitado[v] = True

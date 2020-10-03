@@ -1,9 +1,14 @@
-G = {'A': set(['B', 'C']),
-     'B': set(['A', 'D', 'E']),
-     'C': set(['A', 'F']),
-     'D': set(['B']),
-     'E': set(['B', 'F']),
-     'F': set(['C', 'E'])}
+G2 = {1: set([2, 3]),
+      2: set([3, 4, 11]),
+      3: set([2, 4, 5]),
+      4: set([2, 3, 7, 8]),
+      5: set([3, 6]),
+      6: set([5]),
+      7: set([4, 10, 11]),
+      8: set([2, 4]),
+      9: set([4, 11]),
+      10: set([7, 11]),
+      11: set([7, 9, 10])}
 
 
 def BuscaProfIterativa(G, s):
@@ -19,7 +24,8 @@ def BuscaProfIterativa(G, s):
             print('Visita o vétice {}'.format(vertice))
             P.extend(G[vertice] - visitado)
             print('Tira {} do grafo G'.format(vertice))
+
     return visitado
 
 
-print('Resultado: ', BuscaProfIterativa(G, 'A'))
+print(BuscaProfIterativa(G2, 3))
