@@ -8,7 +8,7 @@ lista_fora_de_ordem = [3, 5, 1, 4, 2, 6, 7, 8, 0, 9]
 
 def BuscaLinear(A, k, n=None):
     i = 1
-    n = len(A)
+    n = len(A) - 1
 
     while i <= n:
         if A[i] == k:
@@ -170,10 +170,10 @@ def BuscaLinearEmOrdem33(A, x, n=None):
 
 
 # saída
-print('Busca LinearEmOrdem3.3 Resultado Esperado está na lista: 4')
+print('Busca LinearEmOrdem3.3 Resultado Esperado qundo x está na lista: 4')
 print('Busca LinearEmOrdem3.3 Resultado Obtido: ',
       BuscaLinearEmOrdem33(lista_em_ordem, 5))
-print('Busca LinearEmOrdem3.3 Resultado Esperado não está na lista: -1')
+print('Busca LinearEmOrdem3.3 Resultado Esperado quando x NÃO está na lista: -1')
 print('Busca LinearEmOrdem3.3 Resultado Obtido:',
       BuscaLinearEmOrdem33(lista_em_ordem, 0))
 
@@ -202,3 +202,61 @@ print('BuscaBinaria3.4 Resultado Obtido: ',
 print('BuscaBinaria3.4 Resultado Esperado: -1')
 print('BuscaBinaria3.4 Resultado Obtido: ',
       BuscaBinaria34(lista_em_ordem, 10))
+
+
+# Algoritmo 5.1 BuscaLinar(A, n, k)
+
+
+def BuscaLinear51(A, k, n=None):
+    i = 1
+    n = len(A) - 1
+
+    while i <= n:
+        if A[i] == k:
+            return i
+        i = i + 1
+    return -1
+
+
+# saída
+print('BuscaLinear5.1 Resultado Esperado quando k está na lista: 7')
+print('BuscaLinear5.1 Resultado Obtido: ',
+      BuscaLinear51(lista_fora_de_ordem, 8))
+print('BuscaLinear5.1 Resultado Esperado quando k NÃO está na lista: -1')
+print('BuscaLinear5.1 Resultado Obtido: ',
+      BuscaLinear51(lista_fora_de_ordem, 12))
+
+
+# Algoritmo 5.2 SomaK(A, k, n)
+
+def SomaK(A, k, n=None):
+    n = len(A)
+    for j in range(0, n):
+        i = BuscaLinear51(A, k - A[j], n)
+        if i != -1 and i != j:
+            return [i, j]
+
+    return [-1, -1]
+
+
+# saída
+print('SomaK Resultado Esperado: [1, 0]')
+print('SomaK Resultado Obtido: ', SomaK(lista_fora_de_ordem, 8))
+
+
+# Algoritmo 5.3 SomaK_V2(A, k, n)
+
+def SomaK_V2(A, k, n=None):
+    n = len(A)
+    for i in range(0, n):
+        j = i + 1
+        for j in range(0, n):
+            if A[i] + A[j] == k:
+                return [i, j]
+
+    return [-1, -1]
+
+
+# saída
+print('SomaK_V2 Resultado Esperado: [1, 0]')
+print('SomaK_V2 Resultado Obtido: ', SomaK(lista_fora_de_ordem, 8))
