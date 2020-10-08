@@ -1,6 +1,7 @@
 import collections
 
-graph = {0: [1, 2], 1: [2], 2: [3], 3: [1, 2], 4: [3, 1], 5: [4, 1]}
+grafo = {15: [13, 17, 19], 18: [15], 12: [13], 20: [16, 19], 19: [
+    15, 20, 14], 13: [12, 15, 14], 16: [13, 15, 20], 14: [13, 19, 17], 17: [14, 15, 19]}
 
 
 def BuscaEmLarguraDistancia(G, s):
@@ -32,4 +33,4 @@ def BuscaEmLarguraDistancia(G, s):
     return resultado
 
 
-print('Resultado: ', BuscaEmLarguraDistancia(graph, 4))
+print('Resultado: ', BuscaEmLarguraDistancia(grafo, 20))
