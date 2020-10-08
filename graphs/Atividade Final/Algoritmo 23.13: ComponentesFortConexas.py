@@ -15,7 +15,8 @@ class Grafo:
         # visita o vertice
         verticeVisitado[d] = True
         # faz uma busca em ordem na arvore de vertices
-        print(d, end='')
+
+        print(d, end='-')
         for i in self.grafo[d]:
             if not verticeVisitado[i]:
                 self.dfs(i, verticeVisitado)
@@ -52,19 +53,27 @@ class Grafo:
             i = P.pop()
             if not verticesVisitados[i]:
                 gr.dfs(i, verticesVisitados)
-                print("")
+                print('')
 
 
-g = Grafo(9)
+g = Grafo(16)
 g.adicionarAresta(1, 2)
+g.adicionarAresta(1, 3)
 g.adicionarAresta(2, 3)
-g.adicionarAresta(3, 4)
+g.adicionarAresta(2, 4)
+g.adicionarAresta(2, 8)
+g.adicionarAresta(2, 11)
 g.adicionarAresta(3, 5)
-g.adicionarAresta(4, 1)
+g.adicionarAresta(4, 7)
+g.adicionarAresta(4, 9)
 g.adicionarAresta(5, 6)
-g.adicionarAresta(6, 7)
-g.adicionarAresta(7, 5)
-g.adicionarAresta(7, 8)
+g.adicionarAresta(6, 9)
+g.adicionarAresta(7, 10)
+g.adicionarAresta(7, 11)
+g.adicionarAresta(9, 11)
+g.adicionarAresta(10, 7)
+g.adicionarAresta(10, 11)
 
-print("Strongly Connected Components:")
+
+print("Componentes fortemente conexos:")
 g.imprimeComponentesFortementeConexos()
