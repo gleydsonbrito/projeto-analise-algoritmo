@@ -6,9 +6,6 @@ def floyd_warshall(vertice, M_adjacencias):
     for k in range(0, vertice):
         for i in range(0, vertice):
             for j in range(0, vertice):
-                # relax the distance from i to j by allowing vertex k as intermediate vertex
-                #
-                # consider which one is better, going through vertex k or the previous value
                 M_adjacencias[i][j] = min(
                     M_adjacencias[i][j], M_adjacencias[i][k] + M_adjacencias[k][j])
 
