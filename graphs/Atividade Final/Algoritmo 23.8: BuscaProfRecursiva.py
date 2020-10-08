@@ -1,8 +1,13 @@
-G = {'0': set(['1', '2']),
-     '1': set(['0', '3', '4']),
-     '2': set(['0']),
-     '3': set(['1']),
-     '4': set(['2', '3'])}
+grafo = {12: set([13]),
+         13: set([12, 14, 15, 16]),
+         14: set([13, 17, 19]),
+         15: set([13, 16, 17, 18]),
+         16: set([13, 15, 20]),
+         17: set([15, 19]),
+         18: set([15]),
+         19: set([14, 15, 17, 20]),
+         20: set([16, 19]),
+         }
 
 # como é uma função recursiva, colocar os prints
 # atrapalha a legibilidade do resultado final
@@ -16,11 +21,11 @@ def buscaProfRecursiva(G, inicio, visitado=None):
     # Marca o primeiro vertice como visitado
     visitado.add(inicio)
     # imprimindo as saídas
-    print('Vertice: ', inicio, end=' -> ')
+    print('V:', inicio, end=' -> ')
     # percorre o próximo vertice que está em G - visitados
     for proximo in G[inicio] - visitado:
         buscaProfRecursiva(G, proximo, visitado)
     return visitado
 
 
-buscaProfRecursiva(G, '2')
+buscaProfRecursiva(grafo, 15)
