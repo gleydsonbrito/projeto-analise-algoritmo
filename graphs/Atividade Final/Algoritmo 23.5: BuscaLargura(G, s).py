@@ -1,6 +1,7 @@
 import collections
 
-grafo = {0: [1, 2], 1: [2], 2: [3], 3: [1, 2], 4: [3, 1], 5: [4, 1]}
+grafo = {15: [13, 17, 19], 18: [15], 12: [13], 20: [16, 19], 19: [
+    15, 20, 14], 13: [12, 15, 14], 16: [13, 15, 20], 14: [13, 19, 17], 17: [14, 15, 19]}
 
 
 def buscaEmLargura(G, s):
@@ -11,8 +12,9 @@ def buscaEmLargura(G, s):
 
     while len(F) > 0:
         vertice = F.popleft()
-        print('desenfileirou o vértice {}'.format(vertice))
+        #print('desenfileirou o vértice {}'.format(vertice))
         resultado.append(vertice)
+        print(resultado)
 
         # se não foi visitado
         # visita e enfileira
@@ -20,9 +22,9 @@ def buscaEmLargura(G, s):
             if v not in visitado:
                 print('Visitando o vértice {}'.format(v))
                 visitado.add(v)
-                print('Enfileirou {}'.format(v))
+                #print('Enfileirou {}'.format(v))
                 F.append(v)
     return resultado
 
 
-print('Resultado: ', buscaEmLargura(grafo, 4))
+print('Saída : ', buscaEmLargura(grafo, 20))
