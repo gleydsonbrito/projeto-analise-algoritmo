@@ -49,7 +49,7 @@ def Dijkstra(G, novo_grafo, origem):
     for vertice in range(numer_vertices):
         if dist[vertice] == float('inf'):
             dist[vertice] = 'Não há caminho'
-        print('Vertice ' + str(vertice) + ': é ' + str(dist[vertice]))
+        print('vertice ' + str(vertice) + ' é ' + str(dist[vertice]))
 
 # Calcula a menor distancia de cada fonte para
 # para outro vertice usando Bellman-Ford
@@ -103,14 +103,13 @@ def johnson_algoritmo(G):
 
     print('Grafo modificado: ' + str(grafo_modificado))
 
-    # Run Dijkstra for every vertex as source one by one
+    # Executa o dijkstra para cada vertice fonte
     for origem in range(len(G)):
         print('\nMenor distancia do vertice ' +
-              str(origem) + ' para o:\n')
+              str(origem) + ' para o\n')
         Dijkstra(G, grafo_modificado, origem)
 
 
-# Driver Code
 grafo = [[0, -5, 2, 3],
          [0, 0, 4, 0],
          [0, 0, 0, 1],
