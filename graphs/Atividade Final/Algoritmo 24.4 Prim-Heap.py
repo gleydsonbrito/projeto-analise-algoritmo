@@ -1,6 +1,7 @@
 from collections import defaultdict
 import heapq
 
+
 grafo = {
     'A': {'B': 2, 'C': 3},
     'B': {'A': 2, 'C': 1, 'D': 1, 'E': 4},
