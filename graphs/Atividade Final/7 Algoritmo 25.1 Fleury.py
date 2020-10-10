@@ -7,6 +7,7 @@ class Digrafo:
         self.V = vertices
         self.digrafo = defaultdict(list)
         self.Time = 0
+        self.p = 0
 
     # adiciona uma aresta ao digrafo
     def adicionaArco(self, u, v):
@@ -16,9 +17,11 @@ class Digrafo:
     # remove uma aresta do digrafo
     def removerArco(self, u, v):
         for indice, k in enumerate(self.digrafo[u]):
+            self.p += 1
             if k == v:
                 self.digrafo[u].pop(indice)
         for indice, k in enumerate(self.digrafo[v]):
+            self.p += 1
             if k == u:
                 self.digrafo[v].pop(indice)
 
@@ -27,6 +30,7 @@ class Digrafo:
         count = 1
         visitado[v] = True
         for i in self.digrafo[v]:
+            self.p += 1
             if visitado[i] == False:
                 count = count + self.contaVerticesAlcancaveis(i, visitado)
         return count
@@ -35,8 +39,10 @@ class Digrafo:
     def arcoValido(self, u, v):
         print('Checa se {} - {} é um arco válido'.format(u, v))
         if len(self.digrafo[u]) == 1:
+            self.p += 1
             return True
         else:
+            self.p += 1
             visitado = [False]*(self.V)
             verticesAlcancaveis1 = self.contaVerticesAlcancaveis(u, visitado)
 
@@ -67,6 +73,9 @@ class Digrafo:
                 break
         self.funcaoSuporte(u)
 
+    def imprimePasso(self):
+        return print(self.p)
+
 
 digrafo = Digrafo(5)
 digrafo.adicionaArco(1, 0)
@@ -80,4 +89,5 @@ digrafo.adicionaArco(2, 4)
 
 print('Trilha Euleriana: ')
 digrafo.imprimir()
-print(trilha)
+print('Passos: {}'.format(digrafo.p))
+print('Trilha: {}'.format(trilha))
