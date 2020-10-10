@@ -16,19 +16,32 @@ def Prim(G, w):
     # guarda os vertices selecionados
     selecionados = [0]*len(G)
     selecionados[0] = True
+    print('Percorrendo os vértices para encontrar o menor peso entre os vertices conectados')
     while (w < numeroVertices - 1):
         minimo = 9999999
         x = 0
         y = 0
         for i in range(numeroVertices):
+            #print('Visita {}'.format(i))
             if selecionados[i]:
+                #print('{} foi Selecionado? {}'.format(i, selecionados[i]))
                 for j in range(numeroVertices):
+                    if G[i][j] != 0:
+                        print('Vertice G[{}][{}] tem peso {}'.format(
+                            i, j, G[i][j]))
+                    else:
+                        print(
+                            'Entre os vétices G[{}][{}] não há caminho'.format(i, j))
                     if ((not selecionados[j]) and G[i][j]):
+
                         if minimo > G[i][j]:
                             minimo = G[i][j]
+                            print(
+                                'Até o momento o vertice mais próximo é {}'.format(minimo))
                             x = i
                             y = j
         arvoreGeradoraMinima.append(str(G[x][y]))
+        print('Adiciona {} à ávore'.format(str(G[x][y])))
         a.append([x, y])
         selecionados[y] = True
         w = w + 1
