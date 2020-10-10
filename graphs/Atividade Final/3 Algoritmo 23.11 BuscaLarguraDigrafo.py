@@ -24,6 +24,7 @@ digrafo = {
 
 
 def buscaEmLarguraDigrafo(D, s):
+    p = 0
     resultado = []
     print('Coloca o {} na fila'.format(s))
     visitado, F = set(), collections.deque([s])
@@ -31,6 +32,7 @@ def buscaEmLarguraDigrafo(D, s):
     print('Visita {}'.format(s))
 
     while len(F) > 0:
+        p += 1
         arco = F.popleft()
 
         print('desenfileirou o vertice {}'.format(arco))
@@ -40,12 +42,14 @@ def buscaEmLarguraDigrafo(D, s):
         # se não foi visitado
         # visita e enfileira
         for v in D[arco]:
+            p += 1
             if v not in visitado:
                 print('Visitando o vertice {}'.format(v))
                 visitado.add(v)
                 print('Enfileirou {}'.format(v))
                 F.append(v)
         print('Fila para ser visitada {}'.format(F))
+    print('Passos: {}'.format(p))
     return resultado
 
 

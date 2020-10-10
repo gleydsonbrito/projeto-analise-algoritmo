@@ -7,15 +7,18 @@ def makeSet(vertice):
     rank[vertice] = 0
 
 
-def Find(vertice):
+def Find(vertice, p):
+    p += 1
     if pai[vertice] != vertice:
-        pai[vertice] = Find(pai[vertice])
+        pai[vertice] = Find(pai[vertice], p)
+    print('Passos: {}'.format(p))
     return pai[vertice]
 
 
-def Union(vertice1, vertice2):
-    raiz1 = Find(vertice1)
-    raiz2 = Find(vertice2)
+def Union(vertice1, vertice2, p):
+    p += 1
+    raiz1 = Find(vertice1, p)
+    raiz2 = Find(vertice2, p)
     if raiz1 != raiz2:
         if rank[raiz1] > rank[raiz2]:
             pai[raiz2] = raiz1
@@ -23,10 +26,12 @@ def Union(vertice1, vertice2):
             pai[raiz1] = raiz2
         if rank[raiz1] == rank[raiz2]:
             rank[raiz2] += 1
+    print('Passos: {}'.format(p))
 
 
-def kruskal(G, w=None):
+def kruskal(G, p, w=None):
     for vertice in G['vertices']:
+        p += 1
         makeSet(vertice)
         print('Constroi o conjunto unitário de {}'.format(vertice))
         arvoreGeradoraMinima = set()
@@ -34,19 +39,21 @@ def kruskal(G, w=None):
         arestas.sort()
 
     for aresta in arestas:
+        p += 1
         w, vertice1, vertice2 = aresta
         print('Testa se a raiz de {} e {} são diferentes'.format(vertice1, vertice2))
-        if Find(vertice1) != Find(vertice2):
+        if Find(vertice1, p) != Find(vertice2, p):
             print('A raizes de {} e {} são diferentes'.format(
                 vertice1, vertice2))
-            Union(vertice1, vertice2)
+            Union(vertice1, vertice2, p)
             print('Faz a união entre {} - {}'.format(vertice1, vertice2))
             arvoreGeradoraMinima.add(aresta)
             print('Adiciona aresta {} à arvore geradora mínima'.format(aresta))
         else:
             print('As raízes de {} e {} são iguais'.format(vertice1, vertice2))
-            print('Raiz de {} é {}'.format(vertice1, Find(vertice1)))
-            print('Raiz de {} é {}'.format(vertice2, Find(vertice2)))
+            print('Raiz de {} é {}'.format(vertice1, Find(vertice1, p)))
+            print('Raiz de {} é {}'.format(vertice2, Find(vertice2, p)))
+    print('Passos: {}'.format(p))
     return sorted(arvoreGeradoraMinima)
 
 
@@ -78,4 +85,4 @@ grafo = {
     ])
 }
 
-print('Resultado: ', kruskal(grafo))
+print('Resultado: ', kruskal(grafo, 0))

@@ -22,20 +22,24 @@ digrafo = {
 
 
 def BuscaProfDigrafo(D, s):
+    p = 0
     print('Inicia pelo vertice {}'.format(s))
     visitado = set()
     print('Empilha {}'.format(s))
     P = [s]
     while len(P) > 0:
+        p += 1
         arco = P.pop()
         print('Desempilha {}'.format(arco))
         print('Visita os {} vizinhos de {}'.format(D[arco], arco))
         if arco not in visitado:
+            p += 1
             visitado.add(arco)
             print('Visita o vétice {}'.format(arco))
             P.extend(D[arco] - visitado)
             print('Tira {} do digrafo'.format(arco))
         print('Pilha para ser visitada {}'.format(P))
+    print('Passos: {}'.format(p))
     return visitado
 
 
