@@ -8,12 +8,15 @@ class Grafo:
         self.adjacencias[u].append(v)
 
     def ordenacaoTopologica(self, s, visitado):
+        p=0
         visitado[s] = True
         print('Visitando {}'.format(s))
         for u in self.adjacencias[s]:
+            p+=1
             if not visitado[u]:
                 self.ordenacaoTopologica(u, visitado)
         self.S.append(s)
+        print('Passos: {}'.format(p))
         print('Insere {} na ordem'.format(s))
 
     def imprimirGrafo(self):

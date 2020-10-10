@@ -17,6 +17,7 @@ class G:
             print('Distâncicia de {} até {} = {}'.format(s, i, dist[i]))
 
     def bellman_ford(self, vertice_fonte):
+        p = 0
         # Preenchendo o array de distânia e de predecessores
         distancia = [float("Inf")] * self.V
 
@@ -25,7 +26,9 @@ class G:
 
         # Relaxamento das arestas
         for _ in range(self.V - 1):
+            p += 1
             for s, d, w in self.grafo:
+                p += 1
                 print('Origiem {} -> destino {} -> e distâncica {}'.format(s, d, w))
                 if distancia[s] != float("Inf") and distancia[s] + w < distancia[d]:
                     distancia[d] = distancia[s] + w
@@ -35,10 +38,11 @@ class G:
         # e não podemos encontrar o menor caminho
 
         for s, d, w in self.grafo:
+            p += 1
             if distancia[s] != float("Inf") and distancia[s] + w < distancia[d]:
                 print("O digrafo contém ciclos negativos")
                 return
-
+        print('Passos: {}'.format(p))
         # Se nenhum ciclo foi encontrado
         # Imprime a distância e o array predecessor
         self.imprimir(distancia, vertice_fonte)

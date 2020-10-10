@@ -2,17 +2,21 @@ INF = 1000000000
 
 
 def floyd_warshall(vertice, M_adjacencias):
+    p = 0
     # calcula o menor camimho entre todos os pares
     for k in range(0, vertice):
+        p += 1
         for i in range(0, vertice):
+            p += 1
             for j in range(0, vertice):
+                p += 1
                 M_adjacencias[i][j] = min(
                     M_adjacencias[i][j], M_adjacencias[i][k] + M_adjacencias[k][j])
-
+    print('Passos: {}'.format(p))
     print('Montando a matriz de resultado')
-    print('lin/col significa vertice de origem (lin) e (col) vertice de destino')
+    print('l/c significa vertice de origem (l=linha) e vertice de destino (c=coluna) ')
     print('A relação A[i][j] representa a distância')
-    print("lin/col", end='')
+    print("l/c", end='')
     for i in range(0, vertice):
         print("\t{:d}".format(i+1), end='')
     print()

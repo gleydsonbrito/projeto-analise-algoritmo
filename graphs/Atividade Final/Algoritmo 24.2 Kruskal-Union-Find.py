@@ -26,7 +26,9 @@ def Union(vertice1, vertice2):
 
 
 def kruskal(G, w=None):
+    p = 0
     for vertice in G['vertices']:
+        p += 1
         makeSet(vertice)
         print('Constroi o conjunto unitário de {}'.format(vertice))
         arvoreGeradoraMinima = set()
@@ -34,6 +36,7 @@ def kruskal(G, w=None):
         arestas.sort()
 
     for aresta in arestas:
+        p += 1
         w, vertice1, vertice2 = aresta
         print('Testa se a raiz de {} e {} são diferentes'.format(vertice1, vertice2))
         if Find(vertice1) != Find(vertice2):
@@ -47,6 +50,7 @@ def kruskal(G, w=None):
             print('As raízes de {} e {} são iguais'.format(vertice1, vertice2))
             print('Raiz de {} é {}'.format(vertice1, Find(vertice1)))
             print('Raiz de {} é {}'.format(vertice2, Find(vertice2)))
+    print('Passos: {}'.format(p))
     return sorted(arvoreGeradoraMinima)
 
 

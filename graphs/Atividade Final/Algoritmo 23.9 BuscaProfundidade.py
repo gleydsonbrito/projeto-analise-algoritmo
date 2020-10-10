@@ -11,6 +11,7 @@ grafo = {12: set([13]),
 
 
 def buscaProfundidade(G, s):
+    p = 0
     C = []
     Pilha = []
 
@@ -22,16 +23,19 @@ def buscaProfundidade(G, s):
     print('Adiciona {} aos visitados'.format(s))
 
     while (len(Pilha) > 0):
+        p += 1
         print('Pilha {}'.format(Pilha))
         vertice = Pilha.pop()
         print('Desempilha {}'.format(vertice))
         v = G[vertice]
         for i in v:
+            p += 1
             if i not in visitados:
                 Pilha.append(i)
                 print('Visitando {}'.format(i))
                 visitados.add(i)
         C.append(vertice)
+    print('Passos: {}'.format(p))
     return C
 
 

@@ -7,11 +7,13 @@ class Grafo:
         self.grafo = defaultdict(list)
 
     # adiciona arestas no grafo
+
     def adicionarAresta(self, s, d):
         self.grafo[s].append(d)
 
     # busca em profundidade recursiva
     def dfs(self, d, verticeVisitado):
+
         # visita o vertice
         verticeVisitado[d] = True
         # faz uma busca em ordem na arvore de vertices
@@ -22,6 +24,7 @@ class Grafo:
                 self.dfs(i, verticeVisitado)
 
     def preenche_em_ordem(self, d, verticeVisitado, pilha):
+
         verticeVisitado[d] = True
         for i in self.grafo[d]:
             if not verticeVisitado[i]:
@@ -32,6 +35,7 @@ class Grafo:
         g = Grafo(self.V)
 
         for i in self.grafo:
+
             for j in self.grafo[i]:
                 g.adicionarAresta(j, i)
         return g

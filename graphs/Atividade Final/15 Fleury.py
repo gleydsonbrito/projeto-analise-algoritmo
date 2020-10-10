@@ -1,4 +1,5 @@
 from collections import defaultdict
+trilha = []
 
 
 class Digrafo:
@@ -32,6 +33,7 @@ class Digrafo:
 
     # Checa se o arco u-v pode ser considerado proximo arco valido
     def arcoValido(self, u, v):
+        print('Checa se {} - {} é um arco válido'.format(u, v))
         if len(self.digrafo[u]) == 1:
             return True
         else:
@@ -50,11 +52,13 @@ class Digrafo:
     def funcaoSuporte(self, u):
         for v in self.digrafo[u]:
             if self.arcoValido(u, v):
-                print("%d-%d " % (u, v), end='-> '),
+                #print("%d-%d " % (u, v), end='-> '),
+                trilha.append(u)
                 self.removerArco(u, v)
                 self.funcaoSuporte(v)
 
     def imprimir(self):
+
         # Encontra um vertice com grau impar
         u = 0
         for i in range(self.V):
@@ -64,15 +68,16 @@ class Digrafo:
         self.funcaoSuporte(u)
 
 
-dig = Digrafo(5)
-dig.adicionaArco(1, 0)
-dig.adicionaArco(0, 2)
-dig.adicionaArco(2, 1)
-dig.adicionaArco(0, 3)
-dig.adicionaArco(3, 4)
-dig.adicionaArco(3, 2)
-dig.adicionaArco(3, 1)
-dig.adicionaArco(2, 4)
+digrafo = Digrafo(5)
+digrafo.adicionaArco(1, 0)
+digrafo.adicionaArco(0, 2)
+digrafo.adicionaArco(2, 1)
+digrafo.adicionaArco(0, 3)
+digrafo.adicionaArco(3, 4)
+digrafo.adicionaArco(3, 2)
+digrafo.adicionaArco(3, 1)
+digrafo.adicionaArco(2, 4)
 
 print('Trilha Euleriana: ')
-dig.imprimir()
+digrafo.imprimir()
+print(trilha)

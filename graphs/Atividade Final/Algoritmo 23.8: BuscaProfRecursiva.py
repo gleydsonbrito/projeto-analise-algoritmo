@@ -14,7 +14,8 @@ grafo = {12: set([13]),
 # adicionei os comentários
 
 
-def buscaProfRecursiva(G, inicio, visitado=None):
+def buscaProfRecursiva(G, inicio, p, visitado=None):
+
     resultado = []
     if visitado is None:
         visitado = set()
@@ -24,8 +25,11 @@ def buscaProfRecursiva(G, inicio, visitado=None):
     print('V:', inicio, end=' -> ')
     # percorre o próximo vertice que está em G - visitados
     for proximo in G[inicio] - visitado:
-        buscaProfRecursiva(G, proximo, visitado)
+
+        buscaProfRecursiva(G, proximo, p, visitado)
+
     return visitado
 
 
-buscaProfRecursiva(grafo, 15)
+buscaProfRecursiva(grafo, 15, p)
+print('Passos: {}'.format(p))

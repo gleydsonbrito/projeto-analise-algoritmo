@@ -14,6 +14,7 @@ grafo = {
 
 
 def criarArvoreGeradora(G, s):
+    p = 0
     print('Vertice de entrada {}'.format(s))
     arvoreGeradoraMinima = defaultdict(set)
     visitados = set([s])
@@ -25,6 +26,7 @@ def criarArvoreGeradora(G, s):
     heapq.heapify(arestas)
 
     while arestas:
+        p += 1
         d, u, v = heapq.heappop(arestas)
         print('Vai para o vizinho mais proximo: {}'.format(v))
         if v not in visitados:
@@ -33,10 +35,11 @@ def criarArvoreGeradora(G, s):
             arvoreGeradoraMinima[u].add(v)
             print('Liga {} com {}'.format(u, v))
             for proximo, d in G[v].items():
+                p += 1
                 if proximo not in visitados:
                     print('Verifica distancia para {}'.format(proximo))
                     heapq.heappush(arestas, (d, v, proximo))
-
+    print('Passos: {}'.format(p))
     return arvoreGeradoraMinima
 
 

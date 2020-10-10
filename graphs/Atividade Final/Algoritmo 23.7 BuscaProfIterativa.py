@@ -12,11 +12,13 @@ grafo = {1: set([2, 3]),
 
 
 def BuscaProfIterativa(G, s):
+    p = 0
     print('Inicia pelo vertice {}'.format(s))
     visitado = set()
     print('Empilha {}'.format(s))
     P = [s]
     while len(P) > 0:
+        p += 1
         print('Elementos na pilha {}'.format(P))
         vertice = P.pop()
         print('Desempilha {}'.format(vertice))
@@ -26,7 +28,7 @@ def BuscaProfIterativa(G, s):
             P.extend(G[vertice] - visitado)
             print('Adiciona aos visitados {}'.format(visitado))
             print('Empilha os vizinhos')
-
+    print('Passos: {}'.format(p))
     return visitado
 
 

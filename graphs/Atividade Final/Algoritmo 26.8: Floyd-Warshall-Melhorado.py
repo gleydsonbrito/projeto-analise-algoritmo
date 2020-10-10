@@ -16,6 +16,7 @@ M = [
 
 
 def floyd_warshall(Md):
+
     exe = 0
     v = len(Md)
     Md = Md
@@ -33,7 +34,7 @@ def floyd_warshall(Md):
                                     Md[i][k] + Md[k][j])
                 print('Matriz na posição M[i][j] = {}'.format(Md[i][j]))
         Md = prox_md
-    print('Retorna o resultado apos {} execuções'.format(exe))
+    print('Retorna o resultado apos {} Passsos'.format(exe))
     return Md
 
 

@@ -5,6 +5,7 @@ from heapq import *
 
 
 def dijkstra(arcos, s, t, D=None):
+    p = 0
     D = defaultdict(list)
     for l, r, c in arcos:
         D[l].append((c, r))
@@ -12,6 +13,7 @@ def dijkstra(arcos, s, t, D=None):
     heap, visitados, minimo = [(0, s, ())], set(), {s: 0}
 
     while heap:
+        p += 1
         (w, v, caminho) = heappop(heap)
         print('Custo caminho total', w)
         print('Vertice atual ', v)
@@ -24,6 +26,7 @@ def dijkstra(arcos, s, t, D=None):
                 return (w, caminho)
 
             for c, v2 in D.get(v, ()):
+                p += 1
                 if v2 in visitados:
                     continue
                 predecessor = minimo.get(v2, None)
@@ -34,7 +37,7 @@ def dijkstra(arcos, s, t, D=None):
                     minimo[v2] = prox
                     print('Mais proximo?', prox)
                     heappush(heap, (prox, v2, caminho))
-
+        print('Passos: {}'.format(p))
     return float("inf")
 
 
