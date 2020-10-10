@@ -6,17 +6,24 @@ INF = float('inf')
 
 
 def floyd_warshall(G):
+    p = 0
     distance = list(map(lambda i: list(map(lambda j: j, i)), G))
 
     # adicionando vertices individualmente
     for k in range(nivel):
+        p += 1
         for i in range(nivel):
+            p += 1
             for j in range(nivel):
+                print('Estamos no vertice G[{}][{}]'.format(i, j))
+                p += 1
                 distance[i][j] = min(
                     distance[i][j], distance[i][k] + distance[k][j])
-                print('Pega o menor entre {} e {}'.format(
-                    distance[i][j], distance[i][k] + distance[k][j]))
-                print('Pega {}'.format(distance[i][j]))
+                print('Vai para o mais proximo entre G[{}][{}]={} e G[{}][{}] = {}'.format(i, j,
+                                                                                           distance[i][j], i, k, distance[i][k] + distance[k][j]))
+                print('Segue para G[{}][{}] que é o mais proximo = {}'.format(
+                    i, j, distance[i][j]))
+    print('Passos: {}'.format(p))
     imprimir(distance)
 
 
