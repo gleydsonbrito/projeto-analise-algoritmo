@@ -21,12 +21,15 @@ def imprime_resultado(path, N):
 
 # Função que executa o algoritmo Floyd-Warshall
 def floydWarshall(matriz_adjacencia, N):
+    p = 0
     custo = matriz_adjacencia.copy()
     caminho = [[None for x in range(N)] for y in range(N)]
 
     # inicializando os custos
     for v in range(N):
+        p += 1
         for u in range(N):
+            p += 1
             if v == u:
                 caminho[v][u] = 0
             elif custo[v][u] != float('inf'):
@@ -36,15 +39,26 @@ def floydWarshall(matriz_adjacencia, N):
 
     # execução do algoritmo
     for k in range(N):
+        p += 1
         for v in range(N):
+            p += 1
             for u in range(N):
+                p += 1
                 # se o vertice  k está no menor caminho entre u v,
                 # então atualiza o valor do custo [u,v], do caminho [u][v]
 
                 if custo[v][k] != float('inf') and custo[k][u] != float('inf') \
                         and (custo[v][k] + custo[k][u] < custo[v][u]):
                     custo[v][u] = custo[v][k] + custo[k][u]
+                    print('Distancia de {} para {} = {}'.format(
+                        v, u, custo[v][u]))
+                    print('Distancia de {} para {} = {}'.format(
+                        v, k, custo[v][k]))
+                    print('Distancia de {} para {} = {}'.format(
+                        k, u, custo[k][u]))
                     caminho[v][u] = caminho[k][u]
+                    print(
+                        'Segue o caminho {} - {} com distancia {}'.format(v, u, custo[v][u]), )
 
             # se o elemento diagonal é negativo, o
             # grafo contém um ciclo de pesos negativos
@@ -53,7 +67,9 @@ def floydWarshall(matriz_adjacencia, N):
                 print("Uma aresta negativa foi encontrada")
                 return
     # imprime o menor caminho entre todos os pares de vertices
+
     imprime_resultado(caminho, N)
+    print('Passos: {}'.format(p))
 
 
 N = 4
