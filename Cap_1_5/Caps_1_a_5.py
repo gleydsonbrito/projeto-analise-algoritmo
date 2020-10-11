@@ -354,6 +354,40 @@ def BuscaBinariaRecursiva(A, x, esq=0, di=None):
 
 
 # saída
-print('BuscaBinariaRecursiva Resultado Esperado:  ')
+print('BuscaBinariaRecursiva Resultado Esperado: 1 ')
 print('BuscaBinariaRecursiva Resultado Obtido: ',
-      BuscaBinariaRecursiva(lista_em_ordem, 7))
+      BuscaBinariaRecursiva(lista_em_ordem, 2))
+
+# Algoritmo 5.7 Fonaccirecursivo(n)
+
+
+def FibonacciRecursivo(n):
+    if n <= 2:
+        return 1
+    return FibonacciRecursivo(n-1)+FibonacciRecursivo(n-2)
+
+
+# saída
+print('Fibonaccirecursivo Resultado Esperado: 55 ')
+print('Fibonaccirecursivo Resultado Obtido: ',
+      FibonacciRecursivo(10))
+
+# Algoritmo 5.8 Fibonacci(n)
+
+
+def Fibonacci(n):
+    if n <= 2:
+        return 1
+    F = [0]*n
+    F[0] = 1
+    F[1] = 1
+    i = 2
+    for i in range(2, n):
+        F[i] = F[i-1]+F[i-2]
+    return max(F)
+
+
+# saída
+print('Fibonacci Resultado Esperado: 89 ')
+print('Fibonacci Resultado Obtido: ',
+      Fibonacci(11))
