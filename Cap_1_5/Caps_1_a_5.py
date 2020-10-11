@@ -204,10 +204,11 @@ print('BuscaBinaria3.4 Resultado Obtido: ',
       BuscaBinaria34(lista_em_ordem, 10))
 
 
-# Algoritmo 5.1 BuscaLinar(A, n, k)
+# BuscaLinar(A, n, k) versão mais recente do livro.
+# Feito por engano
 
 
-def BuscaLinear51(A, k, n=None):
+def BuscaLinearII(A, k, n=None):
     i = 1
     n = len(A) - 1
 
@@ -221,10 +222,10 @@ def BuscaLinear51(A, k, n=None):
 # saída
 print('BuscaLinear5.1 Resultado Esperado quando k está na lista: 7')
 print('BuscaLinear5.1 Resultado Obtido: ',
-      BuscaLinear51(lista_fora_de_ordem, 8))
+      BuscaLinearII(lista_fora_de_ordem, 8))
 print('BuscaLinear5.1 Resultado Esperado quando k NÃO está na lista: -1')
 print('BuscaLinear5.1 Resultado Obtido: ',
-      BuscaLinear51(lista_fora_de_ordem, 12))
+      BuscaLinearII(lista_fora_de_ordem, 12))
 
 
 # Algoritmo 5.2 SomaK(A, k, n)
@@ -232,7 +233,7 @@ print('BuscaLinear5.1 Resultado Obtido: ',
 def SomaK(A, k, n=None):
     n = len(A)
     for j in range(0, n):
-        i = BuscaLinear51(A, k - A[j], n)
+        i = BuscaLinearII(A, k - A[j], n)
         if i != -1 and i != j:
             return [i, j]
 
@@ -260,3 +261,99 @@ def SomaK_V2(A, k, n=None):
 # saída
 print('SomaK_V2 Resultado Esperado: [1, 0]')
 print('SomaK_V2 Resultado Obtido: ', SomaK(lista_fora_de_ordem, 8))
+
+
+# Algoritmo 5.1 BuscaLinearRecursiva(A, x, n)
+
+def BuscaLinearRecursiva(A, x, n=None):
+    if n is None:
+        n = len(A)-1
+    if n == 0:
+        return -1
+    if A[n] == x:
+        return n
+    return BuscaLinearRecursiva(A, x, n-1)
+
+
+# saída
+print('BuscaLinearRecursiva Resultado Esperado: 3')
+print('BuscaLinearRecursiva Resultado Obtido: ',
+      BuscaLinearRecursiva(lista_fora_de_ordem, 4))
+
+# Algoritmo 5.2 Fatorial(n)
+
+
+def Fatorial(n):
+    if n == 0:
+        return 1
+    return n*Fatorial(n-1)
+
+
+# Algortimo 5.3 Potencia(x, n)
+
+
+def PotenciaV1(x, n):
+    if n == 0:
+        return 1
+    return x*PotenciaV1(x, n-1)
+
+
+# saída
+print('PotenciaV1 Resultado Esperado: 81')
+print('PotenciaV1 Resultado Obtido: ', PotenciaV1(9, 2))
+
+# Algoritmo 5.4 PotenciaV2(x, n)
+
+
+def PotenciaV2(x, n):
+    if n == 0:
+        return 1
+    if n % 2 == 0:
+        return PotenciaV2(x, n/2)*PotenciaV2(x, n/2)
+    else:
+        return x*PotenciaV1(x, (n-1)/2)*PotenciaV2(x, (n-1)/2)
+
+
+# saída
+print('PotenciaV2 Resultado Esperado: 64')
+print('PotenciaV2 Resultado Obtido: ', PotenciaV2(8, 2))
+
+
+# Algoritmo 5.5 PotenciaV3(x, n)
+
+def PotenciaV3(x, n):
+    if n == 0:
+        return 1
+    if n % 2 == 0:
+        aux = PotenciaV2(x, n/2)
+        return aux * aux
+    else:
+        aux = PotenciaV1(x, (n-1)/2)
+        return x * aux * aux
+
+
+# saída
+print('PotenciaV3 Resultado Esperado: 49 ')
+print('PotenciaV3 Resultado Obtido: ', PotenciaV3(7, 2))
+
+
+# Algoritmo 5.6 BuscaBinariaRecursiva(A, esq, dir, x)
+
+def BuscaBinariaRecursiva(A, x, esq=0, di=None):
+    if di is None:
+        di = len(A)-1
+
+    meio = (esq+di)//2
+
+    if A[meio] == x:
+        return meio
+    elif x < A[meio]:
+        BuscaBinariaRecursiva(A, x, esq, meio-1)
+    else:
+        BuscaBinariaRecursiva(A, x, meio + 1, di)
+
+
+# saída
+print('BuscaBinariaRecursiva Resultado Esperado:  ')
+print('BuscaBinariaRecursiva Resultado Obtido: ',
+      BuscaBinariaRecursiva(lista_em_ordem, 7))
