@@ -1,7 +1,7 @@
 import random
 
 
-def bubbleSort0(A, d=0):  # Melhor caso O(n) e Pior caso O(n²)
+def bubbleSort0(A, d=0):  # Melhor caso O(n²) e Pior caso O(n²)
     # Super ingênuo
     n = len(A)-1
     for i in range(n):
@@ -24,7 +24,7 @@ def bubbleSort1(A, d=0):
 def bubbleSort2(A, d=0):
     # bubble com flag sem considerar parte ordenada
     n = len(A)
-    for i in range(n-1):
+    for i in range(n-1):  # O(1) + O(n)
         flag = 0
         for j in range(n-1):
             if A[j] > A[j+1]:
@@ -39,9 +39,9 @@ def bubbleSort2(A, d=0):
 def bubbleSort3(A, d=0):
     # bubble com flag considerando parte ordenada de forma naive
     n = len(A)
-    for i in range(n-1):
+    for i in range(n-1):  # melhor caso O(1) + O(n)
         flag = 0
-        for j in range(n-1):
+        for j in range(n-1):  # pior caso (n²)
             if A[j] > A[j+1]:
                 aux = A[j]
                 A[j] = A[j+1]
@@ -56,7 +56,7 @@ def bubbleSort4(A, d=0):
     # considerando parte já ordenada de forma inteligente
     n = len(A)
     while True:
-        newn = 0
+        newn = 0  # O(n²)
         for j in range(n-1):
             if A[j] > A[j+1]:
                 aux = A[j]
@@ -79,4 +79,4 @@ def bubbleSort5(A, d=0):
             if A[i] > A[i + 1]:
                 A[i], A[i + 1] = A[i + 1], A[i]
                 ordenado = False
-
+        n -= 1
